@@ -27,53 +27,53 @@ function cypherCreation() {
         {letter: "x" , value: '35'},
         {letter: "y" , value: '45'},
         {letter: "z" , value: '55'},
-    ]
-    return cypher
+    ];
+    return cypher;
 }
 
 
 function polybius(input, encode = true) {
-    let pCypher = cypherCreation() //cypher variable
-    let alphabet = "abcdefghijklmnopqrstuvwxyz"
-    const numbers = "0123456789" //variable for decoding
-    input = input.toLowerCase() //prevents errors from capital letters
-    const result = []
+    let pCypher = cypherCreation(); //cypher variable
+    let alphabet = "abcdefghijklmnopqrstuvwxyz";
+    const numbers = "0123456789"; //variable for decoding
+    input = input.toLowerCase(); //prevents errors from capital letters
+    const result = [];
     if (encode){
         for (let i = 0; i < input.length; i++){ //loops through the input, and finds each letter in the cypher
-            let index = input[i]
+            let index = input[i];
             if (alphabet.includes(index)){ //tests if the letter is in the alphabet, otherwise it is ignored and added to the final result
-                let temp = pCypher.find((cypher) => cypher.letter === index )
-                result.push(temp.value)
+                let temp = pCypher.find((cypher) => cypher.letter === index );
+                result.push(temp.value);
             } else {
-                result.push(index)
+                result.push(index);
             }
         }     
     } else {
         //this if statement will catch any input that is not even
         if (input.includes(" ")) {
-            let spaces = input.split(" ")
+            let spaces = input.split(" ");
             for (let i =0; i < spaces.length; i++){
-                if (spaces[i].length % 2 != 0){
-                    return false
+                if (spaces[i].length % 2 != 0){;
+                    return false;
                 }
             }
         }
         for (let i = 0; i<input.length;){ //loops through the input finds the corresponding letter for set of two numbers
             if (numbers.includes(input[i])) {
-                let temp = pCypher.find((cypher) => cypher.value === (input[i] + input[i+1]))
+                let temp = pCypher.find((cypher) => cypher.value === (input[i] + input[i+1]));
                 if (temp.value === '42'){//special case for i or j
-                    result.push(`(i/j)`)
+                    result.push(`(i/j)`);
                 } else {
-                    result.push(temp.letter)
+                    result.push(temp.letter);
                 }
                 i += 2;
             } else {
-                result.push(input[i])
+                result.push(input[i]);
                 i += 1;
             }
         }     
     }
-    return result.join("")
+    return result.join("");
 }
 
 module.exports = polybius;
