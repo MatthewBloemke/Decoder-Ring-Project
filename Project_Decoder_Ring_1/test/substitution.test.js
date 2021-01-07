@@ -39,8 +39,8 @@ describe("substitution", () => {
         expect(uppercase).to.equal(lowercase);
     });
     it("Should properly decode messages", () => {
-        const input = "ckvsjm sq ntj";
-        const alphabet = "zxcvbnmasdfghjklewqrtyuiop";
+        const input = "#kvsjm sq ntj";
+        const alphabet = "zx#vbnmasdfghjklewqrtyuiop";
         const actual = substitution(input, alphabet, false);
         const expected = "coding is fun";
         expect(actual).to.equal(expected);
